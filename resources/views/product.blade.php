@@ -14,7 +14,7 @@
           @foreach ($products as $item)
         <div class="item {{$item['id']==1?'active':''}}">
         <a href="detail/{{$item['id']}}">
-              <img class="slider-img" src="{{$item['gallery']}}">
+              <img class="slider-img" src="images/{{$item['gallery']}}">
             <div class="carousel-caption slider-text">
               <h3>{{$item['name']}}</h3>
               <p>{{$item['description']}}</p>
@@ -39,8 +39,8 @@
         <h3>Tredning Products</h3>
         @foreach($products as $item)
         <div class="trening-item">
-          <a href="detail/{{$item['id']}}">
-          <img class="trending-image" src="{{$item['gallery']}}">
+        <a href="detail/{{$item['id']}}">
+        <img class="trending-image" src="images/{{$item['gallery']}}">
           <div class="">
             <h3>{{$item['name']}}</h3>
           </div>

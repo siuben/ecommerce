@@ -30,13 +30,13 @@ class ProductController extends Controller
         ->get();
         return view('search',['products'=>$data]);
     }
-    function addToCart(Request $req)
+    function addToCart(Request $request)
     {
-        if($req->session()->has('user'))
+        if($request->session()->has('user'))
         {
            $cart= new Cart;
-           $cart->user_id=$req->session()->get('user')['id'];
-           $cart->product_id=$req->product_id;
+           $cart->user_id=$request->session()->get('user')['id'];
+           $cart->product_id=$request->product_id;
            $cart->save();
            return redirect('/');
 
@@ -53,6 +53,8 @@ class ProductController extends Controller
     }
     function cartList()
     {
+        if(session()->has('user'))
+        {
         $userId=Session::get('user')['id'];
        $products= DB::table('cart')
         ->join('products','cart.product_id','=','products.id')
@@ -60,7 +62,10 @@ class ProductController extends Controller
         ->select('products.*','cart.id as cart_id')
         ->get();
 
-        return view('cartlist',['products'=>$products]);
+        return view('cartlist',['products'=>$products]);   }  else
+        {
+            return redirect('/login');
+        }
     }
     function removeCart($id)
     {

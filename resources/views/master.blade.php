@@ -44,7 +44,7 @@
         margin: 30px;
     }
     .detail-img{
-        height: 200px;
+        height: 500px;
     }
     .search-box{
         width: 500px !important
